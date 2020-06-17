@@ -187,7 +187,7 @@ class App extends React.Component {
                     <div className="jumbotron text-center h-wallpaper">
                         <h1>Enjoy your &nbsp;<i className="fas fa-cocktail"/> Easly!</h1>
                         <br/>
-                        <button onClick={this.submitOrderDialog} className="btn btn-dark"><span><i className="fas fa-check mr-2"/>Confirm your Order</span></button>
+                        <button onClick={this.submitOrderDialog} className="btn btn-dark"><span className="confirm-order-btn-text">Confirm your Order</span></button>
                     </div>
                 </div>
                 <div className="container">
@@ -195,19 +195,19 @@ class App extends React.Component {
                         <div className="col-sm-4">
                             <h4 className="inline">Tap an Ingredient</h4>
                             <i className="fas fa-arrow-right float-right"/>
-                            <br/>
+                            <br/><br/>
                             <Ingredients handleIngredientClick={this.handleIngredientClick}/>
                         </div>
                         <div className="col-sm-4">
                             <h4 className="inline">Make your Choice</h4>
                             <i className="fas fa-arrow-right float-right"/>
-                            <br/>
+                            <br/><br/>
                             <Cocktails renderCocktailList={() => this.renderCocktailList(this.state.cocktailsList,
                                 false)}/>
                         </div>
                         <div className="col-sm-4">
-                            <h4 className="inline">Confirm your Basket - <TotalEurBasket totalEur={this.state.totalEurBasket} /></h4>
-                            <br/>
+                            <h4 className="inline">Confirm your Basket</h4> <TotalEurBasket totalEur={this.state.totalEurBasket} />
+                            <br/><br/>
                             <Basket renderCocktailList={() => this.renderCocktailList(this.state.selectedCocktails,
                                 true)}/>
                         </div>

@@ -1,3 +1,12 @@
+@font-face {
+    font-family: "novel-it";
+    src: url('./fonts/Tomatoes-O8L8.ttf')
+}
+
+.ingredient-list li, h4, .confirm-order-btn-text {
+    font-family: 'novel-it', cursive
+}
+
 .inline {
     display: inline-block !important
 }
@@ -44,7 +53,7 @@
     -ms-transform: translate(-50%, -50%);
     text-align: center;
     opacity: 0.8;
-    width: 135px;
+    width: 100%;
     overflow: hidden;
     height: 35px
 }
@@ -63,20 +72,25 @@
 
 .label-eur {
     font-weight: 400;
-    font-size: 16px;
-    color: #cbcbcb
+    font-size: 18px;
+    color: black;
+    margin-left: 20px
 }
 
 .deleteCocktailIcon {
     position: absolute;
     top: 14px;
-    left: 82%;
+    left: 0;
     color: white;
     background-color: black;
     opacity: 0.7;
     padding: 7px;
     font-size: 14px;
     cursor: pointer
+}
+
+.header-v {
+    box-shadow: 4px 5px 9px #ccc
 }
 
 .header-v .fas.fa-cocktail {
@@ -98,7 +112,9 @@
 }
 
 .header-v .h-wallpaper h1 {
-    text-shadow: 3px 1px 1px black
+    text-shadow: 3px 1px 1px black;
+    font-family: 'novel-it', cursive;
+    letter-spacing: 6px
 }
 
 .mr-2 {
