@@ -108,3 +108,27 @@
 .footer-copyright {
     border-top: 1px solid #ccc
 }
+
+.react-confirm-alert-overlay {
+    background: rgba(0, 0, 0, 0.9) !important
+}
+
+.custom-ui {
+    opacity: 1;
+    color: black;
+    background: white;
+    border: 1px solid white;
+    padding: 20px;
+    width: 1000px;
+    height: 470px;
+
+}
+
+span.totalInDialog {
+    font-size: 40px;
+    color: #868686
+}
+
+.cancel-order {
+    margin-right: 10px
+}

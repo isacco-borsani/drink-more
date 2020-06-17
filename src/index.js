@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 class Cocktail extends React.Component {
     render() {
@@ -216,11 +218,71 @@ class App extends React.Component {
             )
     }
 
-    confirmOrderHandler = () => {
-        if (0 === this.state.selectedCocktails.length) {
+    submitOrder = () => {
+        let options = {
+            title: 'Confirm to submit',
+            message: 'Are you sure to do this.',
+            customUI: ({onOpen}) => {
+                return (
+                    <div className='custom-ui'>
+                        <h1 className="text-center">Confirmation dialog</h1>
+                        <br/>
+                        <div className="container">
+                            <div className="col-4 inline">
+                                <input type="text" className="form-control" placeholder="Name"/>
+                            </div>
+                            <div className="col-4 inline">
+                                <input type="text" className="form-control" placeholder="Surname"/>
+                            </div>
+                            <br/><br/>
+                            <div className="col-4 inline">
+                                <input type="text" className="form-control" placeholder="Country"/>
+                            </div>
+                            <div className="col-4 inline">
+                                <input type="text" className="form-control" placeholder="City"/>
+                            </div>
+                            <div className="col-4 inline">
+                                <input type="text" className="form-control" placeholder="Street name"/>
+                            </div>
+                            <br/><br/><br/>
 
+                            <div className="col-6">
+                                <span className="totalInDialog">Total: {this.state.totalEurBasket} €</span>
+                            </div>
+
+                            <div className="col-1 inline">
+                                <img width="50px"
+                                     src="https://miiego.com/wp-content/uploads/2018/09/mastercard-logo-icon-png_44630.png"
+                                     alt=""/>
+                            </div>
+                            <div className="col-5 inline">
+                                <input type="text" className="form-control" placeholder="Put here your credit card code"/>
+                            </div>
+                            <br/>
+                            <hr/>
+                            <button className="btn btn-xs btn-success float-right mr-2">
+                                <i className="fas fa-check mr-2"/>&nbsp;Proceed</button>
+                            <button className="btn btn-xs btn-danger float-right cancel-order">
+                                <i className="fas fa-times mr-2"/>&nbsp;Cancel</button>&nbsp;&nbsp;
+                        </div>
+                    </div>
+                )
+            }
         }
-    }
+        if (0 === this.state.selectedCocktails.length) {
+            options = {
+                title: 'Alert!',
+                message: 'You have to select a Cocktail at least!',
+                buttons: [
+                    {
+                        label: 'ok',
+                    }
+                ]
+            }
+        }
+
+        confirmAlert(options);
+    };
 
     render() {
         return (
@@ -228,24 +290,27 @@ class App extends React.Component {
                 <div className="header-v">
                     <div className="jumbotron text-center h-wallpaper">
                         <h1>Enjoy your &nbsp;<i className="fas fa-cocktail"/> Delivery!</h1>
-                        <button onClick={this.confirmOrderHandler} className="btn btn-dark"><span><i className="fas fa-check mr-2"/>Confirm your Order</span></button>
+                        <br/>
+                        <button onClick={this.submitOrder} className="btn btn-dark"><span><i className="fas fa-check mr-2"/>Confirm your Order</span></button>
                     </div>
                 </div>
                 <div className="container">
                     <div className="row">
                         <div className="col-sm-4">
-                            <h4>Tap an Ingredient</h4>
+                            <h4 className="inline">Tap an Ingredient</h4>
+                            <i className="fas fa-arrow-right float-right"/>
                             <br/>
                             <Ingredients handleIngredientClick={this.handleIngredientClick}/>
                         </div>
                         <div className="col-sm-4">
-                            <h4>Make your Choice</h4>
+                            <h4 className="inline">Make your Choice</h4>
+                            <i className="fas fa-arrow-right float-right"/>
                             <br/>
                             <Cocktails renderCocktailList={() => this.renderCocktailList(this.state.cocktailsList,
                                 false)}/>
                         </div>
                         <div className="col-sm-4">
-                            <h4>Confirm your Basket - <TotalEurBasket totalEur={this.state.totalEurBasket} /></h4>
+                            <h4 className="inline">Confirm your Basket - <TotalEurBasket totalEur={this.state.totalEurBasket} /></h4>
                             <br/>
                             <Basket renderCocktailList={() => this.renderCocktailList(this.state.selectedCocktails,
                                 true)}/>
