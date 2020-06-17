@@ -102,7 +102,7 @@ class App extends React.Component {
                     onClose();
                     confirmAlert({
                         title: 'Thank you!',
-                        message: 'We will delivery your cocktail as soon as possible',
+                        message: 'Just wait for a while and you will receive your drinks as soon as possible',
                         buttons: [
                             {
                                 label: 'Ok'
@@ -121,7 +121,7 @@ class App extends React.Component {
 
                 return (
                     <div className='custom-ui'>
-                        <h1 className="t ext-center">Confirmation dialog</h1>
+                        <h1 className="text-center">Confirmation dialog</h1>
                         <br/>
                         <div className="container">
                             <form action="#" onSubmit={submitOrder}>
@@ -133,13 +133,7 @@ class App extends React.Component {
                                 </div>
                                 <br/><br/>
                                 <div className="col-4 inline">
-                                    <input type="text" className="form-control" placeholder="Country" required/>
-                                </div>
-                                <div className="col-4 inline">
-                                    <input type="text" className="form-control" placeholder="City" required/>
-                                </div>
-                                <div className="col-4 inline">
-                                    <input type="text" className="form-control" placeholder="Street name" required/>
+                                    <input type="number" className="form-control" placeholder="Table number" required/>
                                 </div>
                                 <br/><br/><br/>
 
@@ -191,7 +185,7 @@ class App extends React.Component {
             <div>
                 <div className="header-v">
                     <div className="jumbotron text-center h-wallpaper">
-                        <h1>Enjoy your &nbsp;<i className="fas fa-cocktail"/> Delivery!</h1>
+                        <h1>Enjoy your &nbsp;<i className="fas fa-cocktail"/> Easly!</h1>
                         <br/>
                         <button onClick={this.submitOrderDialog} className="btn btn-dark"><span><i className="fas fa-check mr-2"/>Confirm your Order</span></button>
                     </div>
