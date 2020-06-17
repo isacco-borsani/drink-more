@@ -91,22 +91,40 @@ class App extends React.Component {
             )
     }
 
-    submitOrder = (e) => {
-        e.preventDefault();
-        return false;
-    }
-
     submitOrderDialog = () => {
         let options = {
             title: 'Confirm to submit',
             message: 'Are you sure to do this.',
-            customUI: ({onOpen}) => {
+            customUI: ({onClose}) => {
+
+                const submitOrder = (e) => {
+                    e.preventDefault();
+                    onClose();
+                    confirmAlert({
+                        title: 'Thank you!',
+                        message: 'We will delivery your cocktail as soon as possible',
+                        buttons: [
+                            {
+                                label: 'Ok'
+                            }
+                        ]
+                    })
+                    this.setState(
+                        {
+                            'cocktailsList': [],
+                            'selectedCocktails': [],
+                            'totalEurBasket': 0
+                        }
+                    )
+                    return false;
+                }
+
                 return (
                     <div className='custom-ui'>
-                        <h1 className="text-center">Confirmation dialog</h1>
+                        <h1 className="t ext-center">Confirmation dialog</h1>
                         <br/>
                         <div className="container">
-                            <form action="" onSubmit={this.submitOrder}>
+                            <form action="#" onSubmit={submitOrder}>
                                 <div className="col-4 inline">
                                     <input type="text" className="form-control" placeholder="Name" required/>
                                 </div>
@@ -145,7 +163,7 @@ class App extends React.Component {
                                 <hr/>
                                 <button type="submit" className="btn btn-xs btn-success float-right mr-2">
                                     <i className="fas fa-check mr-2"/>&nbsp;Proceed</button>
-                                <button className="btn btn-xs btn-danger float-right cancel-order">
+                                <button onClick={onClose} className="btn btn-xs btn-danger float-right cancel-order">
                                     <i className="fas fa-times mr-2"/>&nbsp;Cancel</button>&nbsp;&nbsp;
                             </form>
                         </div>
