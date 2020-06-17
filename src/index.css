@@ -78,3 +78,33 @@
     font-size: 14px;
     cursor: pointer
 }
+
+.header-v .fas.fa-cocktail {
+    font-size: 150px;
+    transform: rotate(17deg)
+}
+
+.header-v button span {
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    font-size: 17px;
+    font-weight: 400
+}
+
+.header-v .h-wallpaper {
+    color: white;
+    background: url(wh.jpg) center;
+    background-size: contain
+}
+
+.header-v .h-wallpaper h1 {
+    text-shadow: 3px 1px 1px black
+}
+
+.mr-2 {
+    margin-right: 2px !important;
+}
+
+.footer-copyright {
+    border-top: 1px solid #ccc
+}

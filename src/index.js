@@ -41,7 +41,7 @@ class Ingredient extends React.Component {
 
 class Cocktails extends React.Component {
     render() {
-        return this.props.renderCocktailList(this.props.cocktails);
+        return this.props.renderCocktailList(this.props['cocktails']);
     }
 }
 
@@ -156,7 +156,7 @@ class App extends React.Component {
     }
 
     deleteClickHandler = (c) => {
-        let cocktails = [... this.state.selectedCocktails];
+        let cocktails = [...this.state.selectedCocktails];
         let cocktailIndex = cocktails.findIndex(p => {
             return p === c
         });
@@ -216,12 +216,20 @@ class App extends React.Component {
             )
     }
 
+    confirmOrderHandler = () => {
+        if (0 === this.state.selectedCocktails.length) {
+
+        }
+    }
+
     render() {
         return (
             <div>
-                <div className="jumbotron text-center">
-                    <h1>Enjoy your &nbsp;<i className="fas fa-cocktail"/>ocktail Experience!</h1>
-                    <p>Resize this responsive page to see the effect!</p>
+                <div className="header-v">
+                    <div className="jumbotron text-center h-wallpaper">
+                        <h1>Enjoy your &nbsp;<i className="fas fa-cocktail"/> Delivery!</h1>
+                        <button onClick={this.confirmOrderHandler} className="btn btn-dark"><span><i className="fas fa-check mr-2"/>Confirm your Order</span></button>
+                    </div>
                 </div>
                 <div className="container">
                     <div className="row">
@@ -233,12 +241,14 @@ class App extends React.Component {
                         <div className="col-sm-4">
                             <h4>Make your Choice</h4>
                             <br/>
-                            <Cocktails renderCocktailList={() => this.renderCocktailList(this.state.cocktailsList, false)}/>
+                            <Cocktails renderCocktailList={() => this.renderCocktailList(this.state.cocktailsList,
+                                false)}/>
                         </div>
                         <div className="col-sm-4">
                             <h4>Confirm your Basket - <TotalEurBasket totalEur={this.state.totalEurBasket} /></h4>
                             <br/>
-                            <Basket renderCocktailList={() => this.renderCocktailList(this.state.selectedCocktails, true)}/>
+                            <Basket renderCocktailList={() => this.renderCocktailList(this.state.selectedCocktails,
+                                true)}/>
                         </div>
                     </div>
                 </div>
