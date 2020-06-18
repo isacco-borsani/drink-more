@@ -1,5 +1,5 @@
 import React from "react";
-
+import './components.css';
 export class Cocktail extends React.Component {
     render() {
         let currentIcon = (
@@ -33,7 +33,9 @@ export class Ingredient extends React.Component {
             ingredientQty = this.props.ingredientQty;
         }
         return (
-            <li onClick={() => {this.props.clickHandler(this.props.ingredientData)}}>
+            <li onClick={() => {
+                this.props.clickHandler(this.props.ingredientData)
+            }}>
                 <img src={imgLink} alt=""/>{this.props.ingredientData}
                 <span className="ingredient-qty">{ingredientQty}</span>
                 <hr/>
@@ -71,7 +73,8 @@ export class Ingredients extends React.Component {
     };
 
     renderIngredient(i) {
-        return <Ingredient clickHandler={this.props.handleIngredientClick} key={i.replace(/\s/g, '_').toLowerCase()} ingredientData={i}/>;
+        return <Ingredient clickHandler={this.props.handleIngredientClick} key={i.replace(/\s/g, '_').toLowerCase()}
+                           ingredientData={i}/>;
     }
 
 
@@ -100,7 +103,7 @@ export class Ingredients extends React.Component {
         if (listOfIngredients.length === 0) {
             return (
                 <div className="col-12 inline nopadding">
-                    <SearchForFilter inputEventHandler={this.inputEventHandlerIngredients} />
+                    <SearchForFilter inputEventHandler={this.inputEventHandlerIngredients}/>
                     <br/>
                     <span>Empty list</span>
                 </div>
@@ -109,7 +112,7 @@ export class Ingredients extends React.Component {
 
         return (
             <div className="col-12 inline nopadding">
-                <SearchForFilter inputEventHandler={this.inputEventHandlerIngredients} />
+                <SearchForFilter inputEventHandler={this.inputEventHandlerIngredients}/>
                 <br/>
                 <ul className="ingredient-list nopadding">{listOfIngredients}</ul>
             </div>
@@ -128,7 +131,8 @@ export class TotalEurBasket extends React.Component {
 export class SearchForFilter extends React.Component {
     render() {
         return (
-            <input type="text" className="form-control" onChange={this.props.inputEventHandler} placeholder="Type to filter..." />
+            <input type="text" className="form-control" onChange={this.props.inputEventHandler}
+                   placeholder="Type to filter..."/>
         );
     }
 }
@@ -172,9 +176,12 @@ export class ConfirmationDialog extends React.Component {
                         <br/>
                         <hr/>
                         <button type="submit" className="btn btn-xs btn-success float-right mr-2">
-                            <i className="fas fa-check mr-2"/>&nbsp;Proceed</button>
+                            <i className="fas fa-check mr-2"/>&nbsp;Proceed
+                        </button>
                         <button onClick={this.props.onClose} className="btn btn-xs btn-danger float-right cancel-order">
-                            <i className="fas fa-times mr-2"/>&nbsp;Cancel</button>&nbsp;&nbsp;
+                            <i className="fas fa-times mr-2"/>&nbsp;Cancel
+                        </button>
+                        &nbsp;&nbsp;
                     </form>
                 </div>
             </div>
@@ -186,14 +193,16 @@ export class MoreInfoDialog extends React.Component {
     render() {
 
         let ingredients = [];
-        for(let i = 0; i < 15; i++) {
-            if (null !== this.props.cocktail['strIngredient'+i] &&
-                undefined !== this.props.cocktail['strIngredient'+i]) {
+        for (let i = 0; i < 15; i++) {
+            if (null !== this.props.cocktail['strIngredient' + i] &&
+                undefined !== this.props.cocktail['strIngredient' + i]) {
                 ingredients.push(<Ingredient
-                    clickHandler={() => {return true}}
-                    ingredientQty={this.props.cocktail['strMeasure'+i]}
-                    key={this.props.cocktail['strIngredient'+i]}
-                    ingredientData={this.props.cocktail['strIngredient'+i]}/>)
+                    clickHandler={() => {
+                        return true
+                    }}
+                    ingredientQty={this.props.cocktail['strMeasure' + i]}
+                    key={this.props.cocktail['strIngredient' + i]}
+                    ingredientData={this.props.cocktail['strIngredient' + i]}/>)
             }
         }
 
@@ -204,7 +213,8 @@ export class MoreInfoDialog extends React.Component {
                         <h1 className="text-center">{this.props.cocktail['strDrink']}</h1>
                     </div>
                     <div className="col-1">
-                        <span onClick={this.props.onClose} className="close-modal-info float-right"><i className="fas fa-times"/></span>
+                        <span onClick={this.props.onClose} className="close-modal-info float-right"><i
+                            className="fas fa-times"/></span>
                     </div>
                 </div>
 
@@ -245,8 +255,10 @@ export class MoreInfoDialog extends React.Component {
                     <hr/>
                     <div className="row">
                         <div className="col-12 text-center">
-                            <button onClick={this.props.clickHandler}  className="btn btn-xs btn-primary"><i className="fas fa-plus mr-2" />
-                                &nbsp;Add to your basket</button>
+                            <button onClick={this.props.clickHandler} className="btn btn-xs btn-primary"><i
+                                className="fas fa-plus mr-2"/>
+                                &nbsp;Add to your basket
+                            </button>
                         </div>
                     </div>
 

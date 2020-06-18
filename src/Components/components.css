@@ -1,0 +1,148 @@
+ul.inline-ingredients li .ingredient-qty {
+    margin-left: 30px
+}
+
+.main-info {
+    font-size: 25px;
+    color: grey
+}
+
+.close-modal-info i {
+    font-size: 30px;
+    cursor: pointer;
+    color: #e22727
+}
+
+.custom-ui {
+    opacity: 1;
+    color: black;
+    background: white;
+    border: 1px solid white;
+    padding: 20px;
+    width: 1000px;
+    height: 470px
+}
+
+.custom-ui-more-info {
+    opacity: 1;
+    color: black;
+    background: white;
+    border: 1px solid white;
+    padding: 35px;
+    width: 100%;
+    height: 100%;
+    max-height: 1060px;
+    overflow-y: auto
+}
+
+span.totalInDialog {
+    font-size: 40px;
+    color: #868686
+}
+
+.cancel-order {
+    margin-right: 10px
+}
+
+ul.inline-ingredients {
+    list-style: none;
+    max-height: 400px;
+    width: 100%;
+    overflow-y: scroll;
+    float: right;
+    padding: 0;
+    margin-top: 30px
+}
+
+.deleteCocktailIcon {
+    position: absolute;
+    top: 14px;
+    left: 0;
+    color: white;
+    background-color: black;
+    opacity: 0.7;
+    padding: 7px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    height: 48px;
+    text-align: center
+}
+
+.label-eur {
+    color: white;
+    margin-left: 20px;
+    position: relative;
+    text-shadow: 2px 2px 1px black;
+    font-weight: 500;
+    font-family: sans-serif;
+    top: 0;
+    font-size: 24px !important
+}
+
+.label-eur i {
+    font-size: 60px
+}
+
+.pic-container:hover .image {
+    opacity: 1
+}
+
+
+.image {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: relative;
+    top: 14px
+}
+
+@media screen and (max-width: 375px) {
+    .custom-ui-more-info {
+        max-height: 600px !important
+    }
+}
+
+@media screen and (max-width: 768px) {
+    ul.ingredient-list li {
+        font-size: 14px
+    }
+}
+
+@media screen and (max-width: 899px) {
+    .pic-container {
+        width: 95% !important
+    }
+}
+
+@media screen and (min-width: 900px) and (max-width: 1550px) {
+    .pic-container {
+        width: 45% !important
+    }
+}
+
+.pic-container {
+    position: relative;
+    width: 30%;
+    display: inline-block;
+    margin-right: 6px;
+    cursor: pointer
+}
+
+.cocktail-list, .ingredient-list {
+    list-style: none;
+    max-height: 70vh;
+    overflow-y: scroll
+}
+
+.ingredient-list li {
+    cursor: pointer
+}
+
+.react-confirm-alert-overlay {
+    background: #000000db !important
+}

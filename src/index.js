@@ -1,9 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { confirmAlert } from 'react-confirm-alert';
+import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import {Cocktail, Cocktails, TotalEurBasket, Basket, Ingredients, ConfirmationDialog, MoreInfoDialog} from  './Components/singleComponents'
+import {
+    Cocktail,
+    Cocktails,
+    TotalEurBasket,
+    Basket,
+    Ingredients,
+    ConfirmationDialog,
+    MoreInfoDialog
+} from './Components/singleComponents'
 
 class App extends React.Component {
     state = {
@@ -51,7 +59,10 @@ class App extends React.Component {
             customUI: ({onClose}) => {
                 return (
                     <MoreInfoDialog
-                        clickHandler={() => {this.selectedCocktailHandler(cocktail, false); onClose()}}
+                        clickHandler={() => {
+                            this.selectedCocktailHandler(cocktail, false);
+                            onClose()
+                        }}
                         cocktail={cocktail}
                         onClose={onClose}
                     />
@@ -80,7 +91,9 @@ class App extends React.Component {
                 return (
                     <Cocktail
                         isBasket={isBasket}
-                        clickHandler={() =>{this.selectedCocktailHandler(c, isBasket)}}
+                        clickHandler={() => {
+                            this.selectedCocktailHandler(c, isBasket)
+                        }}
                         deleteClickHandler={() => this.deleteClickHandler(c)}
                         moreInfoHandler={() => this.moreInfoHandler(c)}
                         key={c['strDrink'].replace(/\s/g, '_').toLowerCase()}
@@ -179,7 +192,8 @@ class App extends React.Component {
                         <h1>Enjoy your &nbsp;<i className="fas fa-cocktail"/> Easly!</h1>
                         <br/>
                         <button onClick={this.submitOrderDialog} className="btn btn-lg btn-dark confirm-order-btn">
-                            <span className="confirm-order-btn-text">Start drink <br/><TotalEurBasket totalEur={this.state.totalEurBasket} /></span>
+                            <span className="confirm-order-btn-text">Start drink <br/><TotalEurBasket
+                                totalEur={this.state.totalEurBasket}/></span>
                         </button>
                         <br/>
 
