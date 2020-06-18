@@ -3,7 +3,16 @@
     src: url('./fonts/Tomatoes-O8L8.ttf')
 }
 
+.main-container {
+    padding: 35px
+}
+
 .btn-lg.btn-dark {
+    opacity: 0.9
+}
+
+.bg-b {
+    background-color: black;
     opacity: 0.9
 }
 
@@ -39,10 +48,34 @@
 
 .pic-container {
     position: relative;
-    width: 40%;
+    width: 30%;
     display: inline-block;
-    margin-right: 25px;
+    margin-right: 6px;
     cursor: pointer
+}
+
+@media screen and (min-width: 900px) and (max-width: 1550px) {
+    .pic-container {
+        width: 45% !important
+    }
+}
+
+@media screen and (max-width: 899px) {
+    .pic-container {
+        width: 95% !important
+    }
+    .col-4 h4 {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .col-4 h4 {
+        font-size: 16px;
+    }
+    ul.ingredient-list li {
+        font-size: 14px
+    }
 }
 
 .image {
@@ -167,9 +200,10 @@
     color: black;
     background: white;
     border: 1px solid white;
-    padding: 20px;
-    width: 1000px;
+    padding: 35px;
+    width: 100%;
     height: 100%;
+    max-height: 1060px;
     overflow-y: auto
 }
 
@@ -185,9 +219,11 @@ span.totalInDialog {
 ul.inline-ingredients {
     list-style: none;
     max-height: 400px;
-    width: 90%;
-    margin-left: 70px;
-    overflow-y: scroll
+    width: 100%;
+    overflow-y: scroll;
+    float: right;
+    padding: 0;
+    margin-top: 30px
 }
 
 ul.inline-ingredients li .ingredient-qty {

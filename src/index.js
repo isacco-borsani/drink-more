@@ -185,7 +185,7 @@ class App extends React.Component {
 
                     </div>
                 </div>
-                <div className="container">
+                <div className="container-fluid main-container">
                     <div className="row">
                         <div className="col-sm-4">
                             <h4 className="inline">Tap an Ingredient</h4>
@@ -201,7 +201,7 @@ class App extends React.Component {
                                 false)}/>
                         </div>
                         <div className="col-sm-4">
-                            <h4 className="inline">Confirm your Basket</h4>
+                            <h4 className="inline">Check your Basket</h4>
                             <br/><br/>
                             <Basket renderCocktailList={() => this.renderCocktailList(this.state.selectedCocktails,
                                 true)}/>

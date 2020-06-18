@@ -211,10 +211,12 @@ export class MoreInfoDialog extends React.Component {
                 <br/>
                 <div className="container">
                     <div className="row">
-                        <div className="col-4">
-                            <img width="400px" src={this.props.cocktail['strDrinkThumb']} alt=""/>
+                        <div className="col-12 text-center bg-b">
+                            <img width="25%" src={this.props.cocktail['strDrinkThumb']} alt=""/>
                         </div>
-                        <div className="col-8">
+                    </div>
+                    <div className="row">
+                        <div className="col-12">
                             <ul className="inline-ingredients">
                                 {ingredients}
                             </ul>
