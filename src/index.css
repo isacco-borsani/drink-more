@@ -3,7 +3,19 @@
     src: url('./fonts/Tomatoes-O8L8.ttf')
 }
 
-.ingredient-list li, h4, .confirm-order-btn-text {
+.btn-lg.btn-dark {
+    opacity: 0.9
+}
+
+.btn-lg.btn-dark:hover {
+    transform: scale(1.1)
+}
+
+.confirm-order-btn {
+    border-radius: 100px !important
+}
+
+.ingredient-list li, h4, .confirm-order-btn-text, .custom-ui-more-info h1 {
     font-family: 'novel-it', cursive
 }
 
@@ -71,10 +83,18 @@
 }
 
 .label-eur {
-    font-weight: 400;
-    font-size: 18px;
-    color: black;
-    margin-left: 20px
+    color: white;
+    margin-left: 20px;
+    position: relative;
+    text-shadow: 2px 2px 1px black;
+    font-weight: 500;
+    font-family: sans-serif;
+    top: 0;
+    font-size: 24px !important
+}
+
+.label-eur i {
+    font-size: 60px
 }
 
 .deleteCocktailIcon {
@@ -85,8 +105,11 @@
     background-color: black;
     opacity: 0.7;
     padding: 7px;
-    font-size: 14px;
-    cursor: pointer
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    height: 48px;
+    text-align: center
 }
 
 .header-v {
@@ -136,8 +159,18 @@
     border: 1px solid white;
     padding: 20px;
     width: 1000px;
-    height: 470px;
+    height: 470px
+}
 
+.custom-ui-more-info {
+    opacity: 1;
+    color: black;
+    background: white;
+    border: 1px solid white;
+    padding: 20px;
+    width: 1000px;
+    height: 100%;
+    overflow-y: auto
 }
 
 span.totalInDialog {
@@ -147,4 +180,27 @@ span.totalInDialog {
 
 .cancel-order {
     margin-right: 10px
+}
+
+ul.inline-ingredients {
+    list-style: none;
+    max-height: 400px;
+    width: 90%;
+    margin-left: 70px;
+    overflow-y: scroll
+}
+
+ul.inline-ingredients li .ingredient-qty {
+    margin-left: 30px
+}
+
+.main-info {
+    font-size: 25px;
+    color: grey
+}
+
+.close-modal-info i {
+    font-size: 30px;
+    cursor: pointer;
+    color: #e22727
 }

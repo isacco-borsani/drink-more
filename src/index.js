@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import {Cocktail, Cocktails, TotalEurBasket, Basket, Ingredients} from  './Components/singleComponents'
+import {Cocktail, Cocktails, TotalEurBasket, Basket, Ingredients, ConfirmationDialog, MoreInfoDialog} from  './Components/singleComponents'
 
 class App extends React.Component {
     state = {
@@ -30,7 +30,7 @@ class App extends React.Component {
         )
     }
 
-    deleteClickHandler = (c) => {
+    deleteClickHandler = c => {
         let cocktails = [...this.state.selectedCocktails];
         let cocktailIndex = cocktails.findIndex(p => {
             return p === c
@@ -45,9 +45,36 @@ class App extends React.Component {
         )
     }
 
+    openMoreInfoDialog = cocktail => {
+        let options = {
+            title: cocktail['strDrink'],
+            customUI: ({onClose}) => {
+                return (
+                    <MoreInfoDialog
+                        clickHandler={() => {this.selectedCocktailHandler(cocktail, false); onClose()}}
+                        cocktail={cocktail}
+                        onClose={onClose}
+                    />
+                )
+            }
+        }
+
+        confirmAlert(options);
+    }
+
+    moreInfoHandler = c => {
+        fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + c['idDrink'])
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.openMoreInfoDialog(result['drinks'][0])
+                }
+            )
+    }
+
     renderCocktailList(cocktails, isBasket) {
         let listOfSelectedCocktails = [];
-        
+
         if (0 < cocktails.length) {
             listOfSelectedCocktails = cocktails.map((c) => {
                 return (
@@ -55,6 +82,7 @@ class App extends React.Component {
                         isBasket={isBasket}
                         clickHandler={() =>{this.selectedCocktailHandler(c, isBasket)}}
                         deleteClickHandler={() => this.deleteClickHandler(c)}
+                        moreInfoHandler={() => this.moreInfoHandler(c)}
                         key={c['strDrink'].replace(/\s/g, '_').toLowerCase()}
                         cocktailData={c}/>
                 )
@@ -120,48 +148,11 @@ class App extends React.Component {
                 }
 
                 return (
-                    <div className='custom-ui'>
-                        <h1 className="text-center">Confirmation dialog</h1>
-                        <br/>
-                        <div className="container">
-                            <form action="#" onSubmit={submitOrder}>
-                                <div className="col-4 inline">
-                                    <input type="text" className="form-control" placeholder="Name" required/>
-                                </div>
-                                <div className="col-4 inline">
-                                    <input type="text" className="form-control" placeholder="Surname" required/>
-                                </div>
-                                <br/><br/>
-                                <div className="col-4 inline">
-                                    <input type="number" className="form-control" placeholder="Table number" required/>
-                                </div>
-                                <br/><br/><br/>
-
-                                <div className="col-6">
-                                    <span className="totalInDialog">Total: {this.state.totalEurBasket} €</span>
-                                </div>
-
-                                <div className="col-1 inline">
-                                    <img width="50px"
-                                         src="https://miiego.com/wp-content/uploads/2018/09/mastercard-logo-icon-png_44630.png"
-                                         alt=""/>
-                                </div>
-                                <div className="col-5 inline">
-                                    <input type="text"
-                                           className="form-control"
-                                           placeholder="Put here your credit card code"
-                                           required
-                                    />
-                                </div>
-                                <br/>
-                                <hr/>
-                                <button type="submit" className="btn btn-xs btn-success float-right mr-2">
-                                    <i className="fas fa-check mr-2"/>&nbsp;Proceed</button>
-                                <button onClick={onClose} className="btn btn-xs btn-danger float-right cancel-order">
-                                    <i className="fas fa-times mr-2"/>&nbsp;Cancel</button>&nbsp;&nbsp;
-                            </form>
-                        </div>
-                    </div>
+                    <ConfirmationDialog
+                        onClose={onClose}
+                        submitOrder={submitOrder}
+                        totalEurBasket={this.state.totalEurBasket}
+                    />
                 )
             }
         }
@@ -187,7 +178,11 @@ class App extends React.Component {
                     <div className="jumbotron text-center h-wallpaper">
                         <h1>Enjoy your &nbsp;<i className="fas fa-cocktail"/> Easly!</h1>
                         <br/>
-                        <button onClick={this.submitOrderDialog} className="btn btn-dark"><span className="confirm-order-btn-text">Confirm your Order</span></button>
+                        <button onClick={this.submitOrderDialog} className="btn btn-lg btn-dark confirm-order-btn">
+                            <span className="confirm-order-btn-text">Start drink <br/><TotalEurBasket totalEur={this.state.totalEurBasket} /></span>
+                        </button>
+                        <br/>
+
                     </div>
                 </div>
                 <div className="container">
@@ -206,7 +201,7 @@ class App extends React.Component {
                                 false)}/>
                         </div>
                         <div className="col-sm-4">
-                            <h4 className="inline">Confirm your Basket</h4> <TotalEurBasket totalEur={this.state.totalEurBasket} />
+                            <h4 className="inline">Confirm your Basket</h4>
                             <br/><br/>
                             <Basket renderCocktailList={() => this.renderCocktailList(this.state.selectedCocktails,
                                 true)}/>
